@@ -21,9 +21,14 @@ page is just to show all of the buttons and give a quick look of recent golf sta
 
 ```mermaid
 sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
+    actor User
+    participant Roundly
+    participant Database
+
+    User->>Roundly: Log a golf round
+    Roundly->>Database: Save round and scores
+    Database-->>Roundly: Round saved
+    Roundly-->>User: Display updated stats
 ```
 
 ### Key features
@@ -42,23 +47,20 @@ I am going to use the required technologies in the following ways.
 - **HTML** - Create the basic structire for the home page and other pages.
 - **CSS** - Style the website and make it consistent.
 - **React** - Build reusable components like navigation, round logging, and course info.
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **Service** - Create the backend endpoints for things like retrieving and saving user info, rounds, stats, and photos. A third-party golf course API will be used to find courses.
+- **DB/Login** - Users will be able to create an account and login. The database will store account info along with rounds, stats, and photos.
+- **WebSocket** - Allow users to see scores shared by other golfers in real time.
 
 ## 🚀 Specification Deliverable
-
-> [!NOTE]
-> Fill in this sections as the submission artifact for this deliverable. You can refer to this [example](https://github.com/webprogramming260/startup-example/blob/main/README.md) for inspiration.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] I completed the prerequisites for this deliverable (Git commit requirement)
 - [x] Proper use of Markdown
 - [x] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology including your 3rd party API and use of WebSocket
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [X] Description of key features
+- [X] Description of how you will use each technology including your 3rd party API and use of WebSocket
+- [X] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ## 🚀 AWS deliverable
 

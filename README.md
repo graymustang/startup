@@ -1,24 +1,23 @@
-# Your startup name here
+# Roundly
 
 [My Notes](notes.md)
 
-A brief description of the application here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Roundly allows users to combine tools from multiple apps/websites into one. Golfers will be able to track scores, find courses, and share photos and scores with other golfers.
 
 > [!NOTE]
 > This is a template for your startup application. You must modify this `README.md` file for each phase of your development. You only need to fill in the section for each deliverable when that deliverable is submitted in Canvas. Without completing the section for a deliverable, the TA will not know what to look for when grading your submission. Feel free to add additional information to each deliverable description, but make sure you at least have the list of rubric items and a description of what you did for each item.
 
-> [!NOTE]
-> If you are not familiar with Markdown then you should review the [documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) before continuing.
-
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+I'm creating a websitefor golfers who want an easy way to track their game. Instead of just recording scores, the website lets you log rounds, track your stats overtime, find golf courses, and upload photos from the courses
+that you've played. The overall goal is to give golfers an easy way to track progress while also making a reord of the courses they played and the experiences they have had.
 
 ### Design
 
-![Design image](placeholder.png)
+![Design image](roundly-home-page.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+This is the planned layout for Roundly's home page. Users can navigate to different sections of the website to log rounds, view their stats, find courses, upload photos, and get access to other golf related things. The home
+page is just to show all of the buttons and give a quick look of recent golf stats.
 
 ```mermaid
 sequenceDiagram
@@ -29,17 +28,20 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Round logging: Users will be able to keep track of each hole on a course and their respective scores.
+- Stat tracking: Users can view stats from previous rounds, like average scores, fairways hit, and average putts.
+- Course finder: Users can search and find golf courses in their area.
+- Photo Gallery: Users can upload and view photos they have taken on the course.
+- Accounts: Users can create an account and log in so their rounds, stats, and photos are saved to their profile.
+- Sharing: Users will be able to share scores with other golfers.
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
+- **HTML** - Create the basic structire for the home page and other pages.
+- **CSS** - Style the website and make it consistent.
+- **React** - Build reusable components like navigation, round logging, and course info.
 - **Service** - Description here
 - **DB/Login** - Description here
 - **WebSocket** - Description here
@@ -51,9 +53,9 @@ I am going to use the required technologies in the following ways.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Git commit requirement)
-- [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
+- [x] I completed the prerequisites for this deliverable (Git commit requirement)
+- [x] Proper use of Markdown
+- [x] A concise and compelling elevator pitch
 - [ ] Description of key features
 - [ ] Description of how you will use each technology including your 3rd party API and use of WebSocket
 - [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.

@@ -9,8 +9,8 @@ Roundly allows users to combine tools from multiple apps/websites into one. Golf
 
 ### Elevator pitch
 
-I'm creating a websitefor golfers who want an easy way to track their game. Instead of just recording scores, the website lets you log rounds, track your stats overtime, find golf courses, and upload photos from the courses
-that you've played. The overall goal is to give golfers an easy way to track progress while also making a reord of the courses they played and the experiences they have had.
+I'm creating a website for golfers who want an easy way to track their game. Instead of just recording scores, the website lets you log rounds, track your stats over time, find golf courses, and upload photos from the courses
+that you've played. The overall goal is to give golfers an easy way to track progress while also making a record of the courses they played and the experiences they have had.
 
 ### Design
 
@@ -46,8 +46,8 @@ I am going to use the required technologies in the following ways.
 
 - **HTML** - Create the basic structire for the home page and other pages.
 - **CSS** - Style the website and make it consistent.
-- **React** - Build reusable components like navigation, round logging, and course info.
-- **Service** - Create the backend endpoints for things like retrieving and saving user info, rounds, stats, and photos. A third-party golf course API will be used to find courses.
+- **React** - Build reusable components like navigation, round logging, and course info. React routing will be used to go between pages, and the page will update when the user enters in scores and other info.
+- **Service** - Create the backend endpoints for things like retrieving and saving user info, rounds, stats, and photos. I will use [Google Maps API](https://developers.google.com/maps) to find courses nearby.
 - **DB/Login** - Users will be able to create an account and login. The database will store account info along with rounds, stats, and photos.
 - **WebSocket** - Allow users to see scores shared by other golfers in real time.
 

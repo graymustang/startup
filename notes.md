@@ -13,7 +13,7 @@ This file represents what I have learned about web programming. Also I love Web 
 
 ## AWS
 
-Interesting things I have learned about AWS
+I hosted my server on AWS and was able to lease a domain name through namecheap.com. I was also able to update Caddy files to get the https. I thought hosting a website was only something that companies with lots of money could do, so it's pretty neat to see my own website being accessible outside of my local machine.
 
 ## HTML
 

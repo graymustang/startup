@@ -17,7 +17,7 @@ I hosted my server on AWS and was able to lease a domain name through namecheap.
 
 ## HTML
 
-Interesting things I have learned about HTML
+I learned that you use an `iframe` tag to display a YouTube video. For a regular mp4 file, you can just use the `video` tag. I also learned about the `Canvas` tag allowing you to do things like draw graphics and images. It does require JavaScript to actually draw though.
 
 ## React
 

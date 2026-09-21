@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Roundly - Log a Round</title>
+    <link rel="stylesheet" href="css/css.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Roundly</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="round.html">Log a Round</a>
+            <a href="stats.html">Stats</a>
+            <a href="courses.html">Find a Course</a>
+            <a href="gallery.html">Photo Gallery</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <section>
+            <div class="floating-box">
+
+                <h2>Log a Round</h2>
+
+                <div class="log-flex">
+
+                    <form class="log-form">
+
+                        <label>
+                            Date:
+                            <input type="date" name="date" required>
+                        </label>
+
+                        <label>
+                            Course:
+                            <input type="text" name="course" placeholder="e.g. Sleepy Ridge" required>
+                        </label>
+
+                        <label>
+                            Score:
+                            <input type="number" name="score" placeholder="e.g. 75" required>
+                        </label>
+
+                        <label>
+                            Fairways Hit (%):
+                            <input type="number" name="fairways" placeholder="e.g. 75" min="0" max="100">
+                        </label>
+
+                        <label>
+                            Putts:
+                            <input type="number" name="putts" placeholder="e.g. 32">
+                        </label>
+
+                        <button type="submit" class="btn">Save Round</button>
+
+                    </form>
+
+                    <div class="log-image">
+                        <img src="img/sleepy-ridge.jpg" alt="Sleepy Ridge Clubhouse">
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        Bjorn Gray | GitHub:
+        <a href="https://github.com/graymustang/startup" target="_blank">
+            https://github.com/graymustang/startup
+        </a>
+    </footer>
+
+</body>
+
+</html>

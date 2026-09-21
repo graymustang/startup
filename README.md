@@ -66,24 +66,24 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Rented EC2 server** - I did not complete this part of the deliverable.
-- [ ] **Leased domain name** - I did not complete this part of the deliverable.
-- [ ] **Server accessible** from my domain: [https://yourdomainnamehere.click](https://yourdomainnamehere.click) - I did not complete this part of the deliverable.
+- [X] **Rented EC2 server** - Rented the EC2 server
+- [X] **Leased domain name** - Roundly
+- [X] **Server accessible** from my domain: [https://roundly.click](https://simon.roundly.click) - 
 
 ## 🚀 HTML deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [X] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+- [X] **HTML pages** - Created pages for home page, logging rounds, stats, finding courses, gallery, and login.
+- [X] **Proper HTML element usage** - Used header, nav, main, form, table, figure, footer, and other HTML tags.
+- [X] **Links** - Added navigation links between all of the main pages.
+- [X] **Text** - Added text that describes my website, stats, course info, and other content.
+- [X] **3rd party API placeholder** - Added a google maps course map and course search placeholder.
+- [X] **Images** - Added golf course images.
+- [X] **Login placeholder** - Added email and password inputs, login and create account buttons, and current user display.
+- [X] **DB data placeholder** - Added a saved round table that represents rounds that will be stored in the database.
+- [X] **WebSocket placeholder** - Added a placeholder in the stats.html page. It will display real time scores.
 
 ## 🚀 CSS deliverable
 

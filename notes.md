@@ -22,3 +22,7 @@ I learned that you use an `iframe` tag to display a YouTube video. For a regular
 ## React
 
 Interesting things I have learned about React
+
+## Simon
+
+I think it's pretty cool that I can use the -s simon option to deploy the Simon project separately from my startup project. I can have different pages but have them hosted on one EC2 instance. It's also cool to see the hyperlinks lead to different pages on the website, and the structure works together.

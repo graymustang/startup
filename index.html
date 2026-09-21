@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 
-
 <html lang="en">
 
 <head>
@@ -11,21 +10,22 @@
 </head>
 
 <body>
+    <header>
+        <h1>Golf Tracker</h1>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="round.html">Log a Round</a>
+            <a href="stats.html">Stats</a>
+            <a href="courses.html">Find a Course</a>
+            <a href="gallery.html">Photo Gallery</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
     <main>
-        <div class="floating-box">
-            <div class="button-container">
-                <a href="#" class="btn" data-nav="home">Home</a>
-                <a href="#" class="btn" data-nav="log-round">Log a Round</a>
-                <a href="#" class="btn" data-nav="stats">Stats</a>
-                <a href="#" class="btn" data-nav="find-course">Find a course</a>
-                <a href="#" class="btn" data-nav="gallery">Photo Gallery</a>
-                <a href="https://youthoncourse.org" target="_blank" class="btn">Youth on Course</a>
-                <a href="#" class="btn" data-nav="contact">About/Contact</a>
-                <a href="#" class="btn" data-nav="log-visit">Visitor Registration</a>
-            </div>
-        </div>
+
         <!--Home section-->
-        <section data-section="home">
+        <section>
             <div class="floating-box">
 
                 <div class="flex-container">
@@ -34,11 +34,9 @@
                     <div class="flex-text">
                         <h1>Track your game</h1>
                         <h1>Lower your scores</h1>
-                        <p>By Bjorn Gray</p>
+                        <p>By Magnus Gray</p>
                     </div>
                 </div>
-
-
 
                 <hr>
 
@@ -52,10 +50,13 @@
                 </div>
 
                 <div class="video-container">
-                    <iframe width="1840" height="1000" src="https://www.youtube.com/embed/gLeW6MNoB4U"
-                        title="1 Pro vs 5 Average Golfers (Not Even Close)" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe
+                        width="1840"
+                        height="1000"
+                        src="https://www.youtube.com/embed/gLeW6MNoB4U"
+                        title="Golf Video"
+                        allowfullscreen>
+                    </iframe>
                 </div>
 
                 <aside class="weather-container">
@@ -64,14 +65,22 @@
                         Snowstorms in the area, book earlier tee times...
                     </div>
                     <a href="https://weather.com/weather/today/l/4f9c2cccc24c9501d3ec21022cc060ea99dc40a0bca3c62398d61f6be6620f8c"
-                        target="_blank" class="btn">
-                        Weather in Orem
+                       target="_blank">
+                        Check Weather
                     </a>
                 </aside>
 
-            </div> <!--floating-box-->
+            </div>
         </section>
     </main>
+
+    <footer>
+        Bjorn Gray |
+        GitHub:
+        <a href="https://github.com/graymustang" target="_blank">
+            https://github.com/graymustang
+        </a>
+    </footer>
 </body>
 
 </html>

@@ -68,13 +68,13 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 - [X] **Rented EC2 server** - Rented the EC2 server
 - [X] **Leased domain name** - Roundly
-- [X] **Server accessible** from my domain: [https://yourdomainnamehere.click](https://simon.roundly.click) - 
+- [X] **Server accessible** from my domain: [https://roundly.click](https://simon.roundly.click) - 
 
 ## 🚀 HTML deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+- [X] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
 - [ ] **HTML pages** - I did not complete this part of the deliverable.
 - [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
 - [ ] **Links** - I did not complete this part of the deliverable.

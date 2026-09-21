@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roundly - Courses</title>
+    <link rel="stylesheet" href="css/css.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Roundly</h1>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="round.html">Round</a>
+            <a href="courses.html">Courses</a>
+            <a href="stats.html">Stats</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="courses">
+            <h2>Find a Course</h2>
+
+            <p>Search for a golf course by city or course name.</p>
+
+            <form class="course-search">
+                <input
+                    type="text"
+                    placeholder="Search by city or course name..."
+                    required
+                >
+                <button type="submit">Search</button>
+            </form>
+
+            <section>
+                <h3>Course Map</h3>
+
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps?q=Sleepy+Ridge+Golf+Course&output=embed"
+                        width="600"
+                        height="400"
+                        style="border:0;"
+                        allowfullscreen
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+                <p>Google Maps course information will be displayed here.</p>
+            </section>
+
+            <section class="course-results">
+                <h3>Course Results</h3>
+                <p>Popular nearby courses will show up here.</p>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            Bjorn Gray | GitHub:
+            <a href="https://github.com/graymustang/startup" target="_blank">
+                https://github.com/graymustang/startup
+            </a>
+        </p>
+    </footer>
+
+</body>
+
+</html>

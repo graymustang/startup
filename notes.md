@@ -20,7 +20,7 @@ I hosted my server on AWS and was able to lease a domain name through namecheap.
 I learned that you use an `iframe` tag to display a YouTube video. For a regular mp4 file, you can just use the `video` tag. I also learned about the `Canvas` tag allowing you to do things like draw graphics and images. It does require JavaScript to actually draw though.
 
 - I learned that the head element has to come before the body element.
-- I learned how to use an ifram to embed Google Maps.
+- I learned how to use an iframe to embed Google Maps.
 
 ## React
 

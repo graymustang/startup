@@ -83,7 +83,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Images** - I did not complete this part of the deliverable.
 - [ ] **Login placeholder** - I did not complete this part of the deliverable.
 - [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [X] **WebSocket placeholder** - Added a placeholder in the stats.html page. It will display real time scores.
 
 ## 🚀 CSS deliverable
 

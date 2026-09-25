@@ -274,3 +274,105 @@ h2 {
   border-radius: 8px;
   text-align: center;
 }
+
+/* Stats page*/
+
+#stats {
+  display: block !important;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.quick-stats {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.quick-stats p {
+  margin: 10px 0;
+  font-size: 26px;
+  text-align: center;
+}
+#stats h2 {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+#stats p {
+  text-align: center;
+}
+
+.stats-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: #f4f4f4;
+  padding: 15px;
+  border-radius: 7px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  flex: 1 1 150px;
+  max-width: 200px;
+}
+
+.stat-card h3 {
+  margin: 0 0 5px;
+  font-size: 16px;
+}
+
+.stat-card p {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.stats-chart {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.stats-chart-container {
+  background: #ffffff;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.chart-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 12px;
+  height: 200px;
+  margin-top: 15px;
+}
+
+.bar {
+  background: #1176e9;
+  flex: 1;
+  max-width: 60px;
+  border-radius: 4px 4px 0 0;
+  position: relative;
+}
+
+.bar span {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: #333;
+}

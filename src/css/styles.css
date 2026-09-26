@@ -31,7 +31,7 @@ body::before {
   padding: 20px;
 }
 
-.container {
+.roundly-container {
   max-width: 900px;
   margin: 0 auto;
   padding: 16px;
@@ -130,7 +130,7 @@ h2 {
   margin-top: 20px;
 }
 
-.btn{
+.roundly-btn{
   display: inline-block;
   background-color: #222;
   color: #fff;
@@ -143,11 +143,11 @@ h2 {
   transition: background 0.2s ease;
 }
 
-.btn:hover {
+.roundly-btn:hover {
   background-color: #444;
 }
 
-.btn.active {
+.roundly-btn.active {
   background-color: #1176e9;
 }
 
@@ -159,13 +159,13 @@ h2 {
   margin: 20px auto;
 }
 
-.button-container .btn {
+.button-container .roundly-btn {
   width: 100%;
   text-align: center;
 }
 
-.log-form .btn,
-.contact-form .btn {
+.log-form .roundly-btn,
+.contact-form .roundly-btn {
   align-self: flex-start;
 }
 

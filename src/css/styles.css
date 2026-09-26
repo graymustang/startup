@@ -539,3 +539,24 @@ textarea.was-validated:invalid ~ .errorMsg {
 
   html, body { overflow-x: hidden; }
 }
+
+.site-header {
+  background-color: rgba(20, 20, 20, 0.9);
+  padding: 8px 25px;
+  margin-bottom: 30px;
+}
+
+.site-header .navbar-brand {
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.site-header .nav-link {
+  color: white;
+  margin: 0 8px;
+}
+
+.site-header .nav-link:hover {
+  color: #7ed957;
+}

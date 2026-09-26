@@ -467,3 +467,75 @@ h2 {
   min-height: 1em;
   margin-top: 4px;
 }
+
+/* Validate CSS*/
+
+
+input.was-validated:invalid,
+textarea.was-validated:invalid {
+  border: 1px solid red;
+}
+
+input.was-validated:valid,
+textarea.was-validated:valid {
+  border: 1px solid #3da6ff; 
+}
+
+/* hide error messages default*/
+.form-field .errorMsg {
+  display: none;
+  font-size: 0.8rem;
+}
+
+
+input.was-validated:invalid ~ .errorMsg,
+textarea.was-validated:invalid ~ .errorMsg {
+  display: block;
+}
+/* Media queries */
+
+/* Phone */
+@media (max-width: 600px) {
+  /* Buttons stack */
+  .button-container { grid-template-columns: 1fr; }
+
+  .button-container .btn,
+  .log-form .btn,
+  .contact-form .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .log-flex { flex-direction: column; align-items: stretch; }
+  .contact-flex { flex-direction: column; }
+
+  .chart-bars { gap: 8px; }
+  .bar { max-width: 40px; }
+
+  .flex-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    padding: 12px;
+    margin: 15px auto;
+  }
+
+  .flex-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .flex-text { width: 100%; }
+
+  .flex-text h1,
+  .flex-text h2 {
+    font-size: 28px;
+  }
+
+  .header-text { text-align: center; }
+
+  .gallery-item img { height: 150px; }
+
+  html, body { overflow-x: hidden; }
+}

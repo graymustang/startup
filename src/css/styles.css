@@ -491,6 +491,59 @@ footer a:hover {
   margin-top: 4px;
 }
 
+/* Login page*/
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+}
+
+.login-card {
+  background-color: white;
+  width: 100%;
+  max-width: 450px;
+  padding: 35px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.login-card h2 {
+  text-align: center;
+  color: #fcfcfc;
+  margin-bottom: 25px;
+}
+
+.login-form label {
+  font-weight: bold;
+}
+
+.login-form .btn {
+  margin-right: 8px;
+  margin-top: 10px;
+}
+
+.current-user {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+  text-align: center;
+}
+
+.current-user h3 {
+  color: #1c3524;
+  font-size: 20px;
+}
+
+.current-user p {
+  margin-bottom: 0;
+}
+
+#email, #password {
+    border-color: #1c3524;
+}
+
 /* Validate CSS*/
 
 

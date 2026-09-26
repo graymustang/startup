@@ -92,8 +92,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [X] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
 - [X] **Visually appealing colors and layout. No overflowing elements.** - Styled the website with consistent colors, backgrounds, cards, and navigation.
 - [X] **Use of a CSS framework** - Used Bootstrap for navigation and other styling.
-- [ ] **All visual elements styled using CSS** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing using flexbox and/or grid display** - I did not complete this part of the deliverable.
+- [X] **All visual elements styled using CSS** - Used CSS to style forms, buttons, images, tables, navigations, and other elements.
+- [X] **Responsive to window resizing using flexbox and/or grid display** - Used Flexbox, CSS Grid, and media queries to make the pages adjust to screen sizes.
 - [X] **Use of a imported font** - I did not complete this part of the deliverable.
 - [ ] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I did not complete this part of the deliverable.
 

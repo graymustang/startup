@@ -29,3 +29,7 @@ Interesting things I have learned about React
 ## Simon
 
 I think it's pretty cool that I can use the -s simon option to deploy the Simon project separately from my startup project. I can have different pages but have them hosted on one EC2 instance. It's also cool to see the hyperlinks lead to different pages on the website, and the structure works together.
+
+## Bootstrap
+
+I learned that Bootstrap is pretty much just a bunch of CSS that someone has already written. I had my own CSS written beforehand, but then using Bootstrap is so convenient. I don't necessarily have to do all the styling myself.

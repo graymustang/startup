@@ -1,4 +1,5 @@
 /* Home page */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 body {
   font-family: Arial, sans-serif;
@@ -23,7 +24,6 @@ body::before {
   height: 100%;
   background-color: #d2d0d0;
   min-height: 100vh;
-  /*background: url("../img/green-background.jpg") repeat fixed;*/
   background-size: cover;
   filter: blur(5px);
   z-index: -1;
@@ -296,8 +296,8 @@ footer a:hover {
 
 /* Stats page*/
 
-#stats {
-  display: block !important;
+main #stats {
+  display: block;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -540,8 +540,9 @@ footer a:hover {
   margin-bottom: 0;
 }
 
-#email, #password {
-    border-color: #1c3524;
+#email,
+#password {
+  border-color: #1c3524;
 }
 
 /* Validate CSS*/

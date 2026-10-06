@@ -24,7 +24,7 @@ I learned that you use an `iframe` tag to display a YouTube video. For a regular
 
 ## React
 
-Interesting things I have learned about React
+I think it's pretty cool that we can use react-router-dom to handle different pages within a single page application. It keeps things organized and makes it so that I don't have to repeat a lot of common components.
 
 ## Simon
 

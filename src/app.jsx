@@ -8,40 +8,40 @@ import { Stats } from "./stats/stats";
 export default function App() {
     return (
         <BrowserRouter>
-        <body>
-            <header className="site-header">
-                <nav className="navbar navbar-expand-lg">
-                    <div className="container-fluid">
+            <body>
+                <header className="site-header">
+                    <nav className="navbar navbar-expand-lg">
+                        <div className="container-fluid">
 
-                        <a className="navbar-brand" href="index.html">Roundly</a>
+                            <a className="navbar-brand" href="index.html">Roundly</a>
 
-                        <div className="navbar-nav">
-                            <a className="nav-link" href="index.html">Home</a>
-                            <a className="nav-link" href="round.html">Log a Round</a>
-                            <a className="nav-link" href="stats.html">Stats</a>
-                            <a className="nav-link" href="courses.html">Find a Course</a>
-                            <a className="nav-link" href="gallery.html">Photo Gallery</a>
-                            <a className="nav-link" href="login.html">Login</a>
+                            <div className="navbar-nav">
+                                <a className="nav-link" href="index.html">Home</a>
+                                <a className="nav-link" href="round.html">Log a Round</a>
+                                <a className="nav-link" href="stats.html">Stats</a>
+                                <a className="nav-link" href="courses.html">Find a Course</a>
+                                <a className="nav-link" href="gallery.html">Photo Gallery</a>
+                                <a className="nav-link" href="login.html">Login</a>
+                            </div>
+
                         </div>
+                    </nav>
+                </header>
+                <main>
+                    <section>
+                        <div className="floating-box">
 
-                    </div>
-                </nav>
-            </header>
-            <main>
-                <section>
-                    <div className="floating-box">
-
-                        <div className="flex-container">
-                            <img src="img/golf-ball-tee.jpg" alt="Golf Ball" className="flex-image"/>
+                            <div className="flex-container">
+                                <img src="img/golf-ball-tee.jpg" alt="Golf Ball" className="flex-image" />
 
                                 <div className="flex-text">
                                     <h1>Track your game</h1>
                                     <h1>Lower your scores</h1>
                                     <p>By Bjorn Gray</p>
                                 </div>
-                        </div>
+                            </div>
 
-                        <hr>
+                            <hr />
 
                             <div className="button-stats-container">
                                 <div className="quick-stats">
@@ -69,18 +69,18 @@ export default function App() {
                                 </a>
                             </aside>
 
-                    </div>
-                </section>
-            </main>
+                        </div>
+                    </section>
+                </main>
 
-            <footer>
-                Bjorn Gray |
-                GitHub:
-                <a href="https://github.com/graymustang/startup" target="_blank">
-                    https://github.com/graymustang/startup
-                </a>
-            </footer>
-        </body>
+                <footer>
+                    Bjorn Gray |
+                    GitHub:
+                    <a href="https://github.com/graymustang/startup" target="_blank">
+                        https://github.com/graymustang/startup
+                    </a>
+                </footer>
+            </body>
         </BrowserRouter>
     )
 }

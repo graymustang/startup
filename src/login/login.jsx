@@ -1,25 +1,25 @@
 import React from "react";
 
 export function Login() {
-    return (<div class="login-card">
+    return (<div className="login-card">
         <h2>Login</h2>
 
-        <form class="login-form">
-            <div class="mb-3">
-                <label for="email" class="form-label">Email:</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter your email"/>
+        <form className="login-form">
+            <div className="mb-3">
+                <label htmlFor="email" className="form-label">Email:</label>
+                <input type="email" className="form-control" id="email" placeholder="Enter your email"/>
             </div>
 
-            <div class="mb-3">
-                <label for="password" class="form-label">Password:</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter your password"/>
+            <div className="mb-3">
+                <label htmlFor="password" className="form-label">Password:</label>
+                <input type="password" className="form-control" id="password" placeholder="Enter your password"/>
             </div>
 
-            <button type="submit" class="btn btn-success">Login</button>
-            <button type="button" class="btn btn-outline-success">Create Account</button>
+            <button type="submit" className="btn btn-success">Login</button>
+            <button type="button" className="btn btn-outline-success">Create Account</button>
         </form>
 
-        <div class="current-user">
+        <div className="current-user">
             <h3>Current User</h3>
             <p>Logged in as: <span>Username</span></p>
         </div>

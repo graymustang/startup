@@ -102,9 +102,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [X] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+- [X] **Bundled using Vite** - Converted my website to use Vite to be able to run and build the application.
+- [X] **Components** - Converted my HTML pages into React components for Home, Log a Round, Stats, Courses, Gallery, and Login.
+- [X] **Router** - Used React Router to navigate between each component without separate HTML pages.
 
 ## 🚀 React part 2: Reactivity deliverable
 

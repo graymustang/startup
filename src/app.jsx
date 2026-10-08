@@ -20,7 +20,7 @@ export default function App() {
                         </NavLink>
 
                         <div className="navbar-nav">
-                            <NavLink className="nav-link" to="/">
+                            <NavLink end className="nav-link" to="/">
                                 Home
                             </NavLink>
 
@@ -57,6 +57,7 @@ export default function App() {
                     <Route path="/courses" element={<Courses />} />
                     <Route path="/gallery" element={<Gallery />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>
 
@@ -72,5 +73,16 @@ export default function App() {
             </footer>
 
         </BrowserRouter>
+    );
+}
+
+import React from "react";
+
+export function NotFound() {
+    return (
+        <section>
+            <h2>404</h2>
+            <p>Page not found.</p>
+        </section>
     );
 }

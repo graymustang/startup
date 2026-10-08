@@ -1,5 +1,5 @@
 import React from "react"
-import golfBall from "../img/golf-ball-tee.jpg"
+import golfBall from "../img/golf-ball-tee.jpg";
 
 export function Home() {
     return (

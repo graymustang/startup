@@ -497,7 +497,8 @@ main #stats {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 60px 20px;
+  min-height: 80vh;
+  padding: 20px;
 }
 
 .login-card {
@@ -511,7 +512,7 @@ main #stats {
 
 .login-card h2 {
   text-align: center;
-  color: #fcfcfc;
+  color: #f7f7f7;
   margin-bottom: 25px;
 }
 

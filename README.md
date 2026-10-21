@@ -111,8 +111,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [X] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [X] **All functionality implemented or mocked out** - Implemented functionality using React where I could, anywhere that needed a backend I just mocked out.
+- [X] **Hooks** - Used useState to manage inputs and save rounds. Used useEffect to load and sync saved data with localStorage.
 
 ## 🚀 Service deliverable
 

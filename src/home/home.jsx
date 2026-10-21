@@ -1,48 +1,41 @@
-import { useEffect, useState } from 'react';
-import golfBall from '../img/golf-ball-tee.jpg';
+import { useEffect, useState } from 'react'
+import golfBall from '../img/golf-ball-tee.jpg'
 
-const STORAGE_KEY = 'roundlyRounds';
+const STORAGE_KEY = 'roundlyRounds'
 
 function loadRounds() {
     try {
-        const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-        return Array.isArray(data) ? data : [];
+        const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+        return Array.isArray(data) ? data : []
     } catch {
-        return [];
+        return []
     }
 }
 
 function average(values) {
-    if (values.length === 0) return '—';
-    return (values.reduce((total, value) => total + value, 0) / values.length).toFixed(1);
+    if (values.length === 0) return '—'
+    return (values.reduce((total, value) => total + value, 0)/values.length).toFixed(1)
 }
 
 export function Home() {
     const [rounds, setRounds] = useState([]);
 
     useEffect(() => {
-        function refreshRounds() {
-            setRounds(loadRounds());
-        }
+        function refreshRounds() {setRounds(loadRounds())}
 
-        refreshRounds();
-        //also refresh if saved rounds change in another tab, or this tab regains focus.
-        window.addEventListener('storage', refreshRounds);
-        window.addEventListener('focus', refreshRounds);
+        refreshRounds()
+        //also refresh if saved rounds change in another tab
+        window.addEventListener('storage', refreshRounds)
+        window.addEventListener('focus', refreshRounds)
         return () => {
-            window.removeEventListener('storage', refreshRounds);
-            window.removeEventListener('focus', refreshRounds);
-        };
-    }, []);
+            window.removeEventListener('storage', refreshRounds)
+            window.removeEventListener('focus', refreshRounds)
+        }
+    }, [])
 
-    const scores = rounds.map((round) => Number(round.score))
-        .filter((value) => Number.isFinite(value) && value > 0);
-    const fairways = rounds.map((round) => round.fairways)
-        .filter((value) => value !== null && value !== '' && value !== undefined)
-        .map(Number).filter(Number.isFinite);
-    const putts = rounds.map((round) => round.putts)
-        .filter((value) => value !== null && value !== '' && value !== undefined)
-        .map(Number).filter(Number.isFinite);
+    const scores = rounds.map((round) => Number(round.score)).filter((value) => Number.isFinite(value) && value > 0)
+    const fairways = rounds.map((round) => round.fairways).filter((value) => value !== null && value !== '' && value !== undefined).map(Number).filter(Number.isFinite)
+    const putts = rounds.map((round) => round.putts).filter((value) => value !== null && value !== '' && value !== undefined).map(Number).filter(Number.isFinite)
 
     return (
         <section>

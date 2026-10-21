@@ -1,29 +1,29 @@
-import { useEffect, useState } from 'react';
-import sleepyRidge from '../img/sleepy-ridge.jpg';
+import { useEffect, useState } from 'react'
+import sleepyRidge from '../img/sleepy-ridge.jpg'
 
 const emptyRound = {
     date: '', course: '', score: '', fairways: '', putts: '',
-};
+}
 
 export function Round() {
-    const [round, setRound] = useState(emptyRound);
-    const [message, setMessage] = useState('');
-    const [savedCount, setSavedCount] = useState(0);
+    const [round, setRound] = useState(emptyRound)
+    const [message, setMessage] = useState('')
+    const [savedCount, setSavedCount] = useState(0)
 
     //load the number of saved rounds when page opens
     useEffect(() => {
         try {
             const savedRounds = JSON.parse(localStorage.getItem('roundlyRounds') || '[]');
-            setSavedCount(Array.isArray(savedRounds) ? savedRounds.length : 0);
+            setSavedCount(Array.isArray(savedRounds) ? savedRounds.length : 0)
         } catch {
-            setSavedCount(0);
+            setSavedCount(0)
         }
-    }, []);
+    }, [])
 
     function handleChange(event) {
         const { name, value } = event.target;
-        setRound((previous) => ({ ...previous, [name]: value }));
-        setMessage('');
+        setRound((previous) => ({ ...previous, [name]: value }))
+        setMessage('')
     }
 
     function handleSubmit(event) {
@@ -39,20 +39,20 @@ export function Round() {
         };
 
         if (!newRound.course || !newRound.date || !Number.isInteger(newRound.score) || newRound.score <= 0) {
-            setMessage('Please enter a date, course, and valid score.');
+            setMessage('Please enter a date, course, and valid score.')
             return;
         }
 
         try {
-            const previousRounds = JSON.parse(localStorage.getItem('roundlyRounds'));
-            const rounds = Array.isArray(previousRounds) ? previousRounds : [];
-            const updatedRounds = [...rounds, newRound];
-            localStorage.setItem('roundlyRounds', JSON.stringify(updatedRounds));
-            setSavedCount(updatedRounds.length);
-            setRound({ ...emptyRound });
-            setMessage('Round saved');
+            const previousRounds = JSON.parse(localStorage.getItem('roundlyRounds'))
+            const rounds = Array.isArray(previousRounds) ? previousRounds : []
+            const updatedRounds = [...rounds, newRound]
+            localStorage.setItem('roundlyRounds', JSON.stringify(updatedRounds))
+            setSavedCount(updatedRounds.length)
+            setRound({ ...emptyRound })
+            setMessage('Round saved')
         } catch {
-            setMessage('Couldn\'t save your round');
+            setMessage('Couldn\'t save your round')
         }
     }
 

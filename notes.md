@@ -33,3 +33,7 @@ I think it's pretty cool that I can use the -s simon option to deploy the Simon 
 ## Bootstrap
 
 I learned that Bootstrap is pretty much just a bunch of CSS that someone has already written. I had my own CSS written beforehand, but then using Bootstrap is so convenient. I don't necessarily have to do all the styling myself.
+
+## JavaScript
+
+I have been trying to learn how to use arrow functions since I haven't worked with them much. I have found some certain areas where I can use them with React which has helped me understand a bit better about how they work. I also had to search up how to do things in JavaScript, like normalizing a string, in order to mock out some functionality.

@@ -1,46 +1,46 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
-const STORAGE_KEY = 'roundlyRounds';
+const storagekey = 'roundlyRounds'
 
 function loadRounds() {
     try {
-        const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-        return Array.isArray(data) ? data : [];
+        const data = JSON.parse(localStorage.getItem(storagekey) || '[]')
+        return Array.isArray(data) ? data : []
     } catch {
-        return [];
+        return []
     }
 }
 function average(values) {
-    if (values.length === 0) return '—';
-    return (values.reduce((total, value) => total + value, 0) / values.length).toFixed(1);
+    if (values.length === 0) return '—'
+    return (values.reduce((total, value) => total + value, 0) / values.length).toFixed(1)
 }
 
 function formatDate(dateString) {
-    // Avoid timezone shifts caused by parsing YYYY-MM-DD as UTC.
-    const parts = String(dateString || '').split('-');
-    if (parts.length !== 3) return dateString || '—';
-    return `${parts[1]}/${parts[2]}/${parts[0]}`;
+    //parse time
+    const parts = String(dateString || '').split('-')
+    if (parts.length !== 3) return dateString || '—'
+    return `${parts[1]}/${parts[2]}/${parts[0]}`
 }
 
 export function Stats() {
-    const [rounds, setRounds] = useState([]);
+    const [rounds, setRounds] = useState([])
 
     useEffect(() => {
         //load rounds when the Stats page opens.
-        setRounds(loadRounds());
-    }, []);
+        setRounds(loadRounds())
+    }, [])
 
     const sortedRounds = [...rounds].sort((a, b) =>
         String(b.date || '').localeCompare(String(a.date || ''))
-    );
+    )
 
-    const scores = rounds.map((round) => Number(round.score)).filter((value) => Number.isFinite(value) && value > 0);
-    const fairways = rounds.map((round) => round.fairways).filter((value) => value !== null && value !== '' && value !== undefined).map(Number).filter(Number.isFinite);
-    const putts = rounds.map((round) => round.putts).filter((value) => value !== null && value !== '' && value !== undefined).map(Number).filter(Number.isFinite);
+    const scores = rounds.map((round) => Number(round.score)).filter((value) => Number.isFinite(value) && value > 0)
+    const fairways = rounds.map((round) => round.fairways).filter((value) => value !== null && value !== '' && value !== undefined).map(Number).filter(Number.isFinite)
+    const putts = rounds.map((round) => round.putts).filter((value) => value !== null && value !== '' && value !== undefined).map(Number).filter(Number.isFinite)
 
     //show the five recent rounds
-    const recentRounds = sortedRounds.slice(0, 5).reverse();
-    const highestScore = Math.max(1, ...recentRounds.map((round) => Number(round.score) || 0));
+    const recentRounds = sortedRounds.slice(0, 5).reverse()
+    const highestScore = Math.max(1, ...recentRounds.map((round) => Number(round.score) || 0))
 
     return (
         <section id="stats">

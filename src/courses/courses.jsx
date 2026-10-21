@@ -38,13 +38,9 @@ const golfCourses = [
 export function Courses() {
     const [search, setSearch] = useState('');
     const [selectedCourse, setSelectedCourse] = useState(() => {
-        const savedId = Number(
-            localStorage.getItem('selectedCourseId')
-        )
+        const savedId = Number(localStorage.getItem('selectedCourseId'))
 
-        return golfCourses.find(
-            (course) => course.id === savedId
-        ) || golfCourses[0]
+        return golfCourses.find((course) => course.id === savedId) || golfCourses[0]
     })
 
     //Remember the last course

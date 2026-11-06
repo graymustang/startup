@@ -39,3 +39,7 @@ I learned that Bootstrap is pretty much just a bunch of CSS that someone has alr
 I have been trying to learn how to use arrow functions since I haven't worked with them much. I have found some certain areas where I can use them with React which has helped me understand a bit better about how they work. I also had to search up how to do things in JavaScript, like normalizing a string, in order to mock out some functionality.
 
 Mocking out functionality was kind of new, but I have done that before for other classes. Basically I am providing fake data so that we can test that everything works even though we don't have a backend.
+
+## Startup Service
+
+It's really cool to be able to wire up a backend and test it through the command line. It took a while to learn since I'm used to being able to use a UI, but testing before I have everything connected to the React components is necessary.

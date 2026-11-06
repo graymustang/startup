@@ -10,6 +10,7 @@ const port = process.argv.length > 2 ? process.argv[2] : 4000
 //middleware
 app.use(express.json()) 
 app.use(cookieParser()) 
+app.use(express.static('public'))
 
 //temporary storage
 let users = [] 
@@ -113,6 +114,14 @@ apiRouter.post('/rounds', verifyAuth, (req, res) => {
   rounds.push(newRound)
   res.status(201).send(newRound)
 })
+
+app.use((req, res) => {
+    if (req.path.startsWith('/api/')) {
+        return res.status(404).send({ msg: 'API endpoint not found' })
+    }
+
+    res.sendFile('index.html', { root: 'public' })
+});
  
 
 app.listen(port, () => {

@@ -8,7 +8,7 @@ function average(values) {
 
 export function Home() {
     const [rounds, setRounds] = useState([]);
-    const [weather, setWeater] = useState(null)
+    const [weather, setWeather] = useState(null)
     const [weatherError, setWeatherError] = useState('')
 
     
@@ -36,6 +36,42 @@ export function Home() {
 
         loadRounds()
     }, [])
+    
+    
+useEffect(() => {
+    const controller = new AbortController();
+
+    async function loadWeather() {
+        try {
+            const response = await fetch(
+                'https://api.open-meteo.com/v1/forecast?latitude=40.2338&longitude=-111.6585&current=temperature_2m,precipitation,wind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph',
+                { signal: controller.signal }
+            );
+
+            if (!response.ok) {
+                throw new Error('Weather request failed');
+            }
+
+            const data = await response.json();
+
+            if (!controller.signal.aborted) {
+                setWeather(data.current);
+                setWeatherError('');
+            }
+        } catch (error) {
+            if (!controller.signal.aborted) {
+                console.error('Weather error:', error);
+                setWeatherError('Unable to load weather information.');
+            }
+        }
+    }
+
+    loadWeather();
+
+    return () => controller.abort();
+}, []);
+
+
 
 
     const scores = rounds.map((round) => Number(round.score)).filter((value) => Number.isFinite(value) && value > 0)
@@ -77,18 +113,36 @@ export function Home() {
                         rel="noreferrer"
                     />
                 </div>
-
                 <aside className="weather-container">
-                    <h2>Weather Warning</h2>
+                    <h2>Golf Weather — Provo, Utah</h2>
+
                     <div className="weather-text">
-                        Snowstorms in the area, book earlier tee times...
+                        {weatherError ? (
+                            <p>{weatherError}</p>
+                        ) : weather ? (
+                            <>
+                                <p>Temperature: {weather.temperature_2m}°F</p>
+                                <p>Wind Speed: {weather.wind_speed_10m} mph</p>
+                                <p>Precipitation: {weather.precipitation} mm</p>
+                        
+                                {weather.precipitation > 0 && (
+                                    <p>Rain or snow detected. Check conditions before golfing</p>
+                                )}
+
+                                {weather.wind_speed_10m > 20 && (
+                                    <p>Strong winds may affect your golf game.</p>
+                                )}
+                            </>
+                        ) : (
+                            <p>Loading weather...</p>
+                        )}
                     </div>
                     <a
-                        href="https://weather.com/weather/today/l/4f9c2cccc24c9501d3ec21022cc060ea99dc40a0bca3c62398d61f6be6620f8c"
+                        href="https://open-meteo.com/"
                         target="_blank"
                         rel="noreferrer"
                     >
-                        Check Weather
+                        Weather data provided by Open-Meteo
                     </a>
                 </aside>
             </div>

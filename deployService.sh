@@ -46,6 +46,8 @@ scp -r -i "$key" build/. ubuntu@"$hostname":services/"$service"/
 printf "\n----> Restarting backend service\n"
 
 ssh -i "$key" ubuntu@"$hostname" << ENDSSH
+export NVM_DIR="\$HOME/.nvm"
+[ -s "\$NVM_DIR/nvm.sh" ] && . "\$NVM_DIR/nvm.sh"
 cd services/${service}
 npm install
 pm2 restart ${service}

@@ -1,74 +1,116 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
 export function Login() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [currentUser, setCurrentUser] = useState(null)
-  const [message, setMessage] = useState('')
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [currentUser, setCurrentUser] = useState(null);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
-    const savedUser = localStorage.getItem('currentUser')
-
-    if (savedUser) {
-      setCurrentUser(savedUser)
-    }
-  }, [])
+    setCurrentUser(null);
+  }, []);
 
   //Mock login
-  function handleLogin(event) {
-    event.preventDefault()
+  async function handleLogin(event) {
+    event.preventDefault();
 
     const normalizedEmail = email.trim().toLowerCase();
-    const accounts = JSON.parse(localStorage.getItem('accounts') || '[]')
 
     if (!normalizedEmail || !password) {
-      setMessage('Please enter email and password')
-      return
+      setMessage("Please enter email and password");
+      return;
     }
 
-    if (!accounts.includes(normalizedEmail)) {
-      setMessage('Account not found. Please create an account.')
-      return
-    }
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "same-origin",
+        body: JSON.stringify({
+          email: normalizedEmail,
+          password: password,
+        }),
+      });
 
-    //Mock authentication
-    localStorage.setItem('currentUser', normalizedEmail)
-    setCurrentUser(normalizedEmail)
-    setPassword('')
-    setMessage('Login successful')
+      if (!response.ok) {
+        setMessage("Invalid email or password");
+        return;
+      }
+
+      const user = await response.json();
+
+      setCurrentUser(user.email);
+      setPassword("");
+      setMessage("Login successful");
+    } catch {
+      setMessage("Unable to connect to the server");
+    }
   }
 
   //Mock account creation
-  function handleCreateAccount() {
-    const normalizedEmail = email.trim().toLowerCase()
+  async function handleCreateAccount() {
+    const normalizedEmail = email.trim().toLowerCase();
 
     if (!normalizedEmail || !password) {
-      setMessage("Please enter an email and password.")
+      setMessage("Please enter an email and password.");
       return;
     }
-    const accounts = JSON.parse(localStorage.getItem("accounts") || "[]")
 
-    if (accounts.includes(normalizedEmail)) {
-      setMessage("An account with this email already exists.")
-      return
+    try {
+      const response = await fetch("/api/auth/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "same-origin",
+        body: JSON.stringify({
+          email: normalizedEmail,
+          password: password,
+        }),
+      });
+
+      if (response.status === 409) {
+        setMessage("An account with this email already exists.");
+        return;
+      }
+
+      if (!response.ok) {
+        setMessage("Unable to create account");
+        return;
+      }
+
+      const user = await response.json();
+
+      setCurrentUser(user.email);
+      setPassword("");
+      setMessage("Account created successfully");
+    } catch {
+      setMessage("Unable to connect to the server");
     }
-
-    accounts.push(normalizedEmail);
-    localStorage.setItem("accounts", JSON.stringify(accounts))
-    localStorage.setItem("currentUser", normalizedEmail)
-
-    setCurrentUser(normalizedEmail)
-    setPassword('')
-    setMessage('Account created successfully')
   }
 
   //Logout
-  function handleLogout() {
-    localStorage.removeItem("currentUser")
-    setCurrentUser(null)
-    setEmail('')
-    setPassword('')
-    setMessage('You have been logged out.')
+
+  async function handleLogout() {
+    try {
+      const response = await fetch("/api/auth/logout", {
+        method: "DELETE",
+        credentials: "same-origin",
+      });
+
+      if (!response.ok) {
+        throw new Error("Logout failed");
+      }
+
+      setCurrentUser(null);
+      setEmail("");
+      setPassword("");
+      setMessage("You have been logged out.");
+    } catch {
+      setMessage("Unable to log out. Please try again.");
+    }
   }
 
   return (

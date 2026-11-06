@@ -1,15 +1,5 @@
 import { useEffect, useState } from 'react'
 
-const storagekey = 'roundlyRounds'
-
-function loadRounds() {
-    try {
-        const data = JSON.parse(localStorage.getItem(storagekey) || '[]')
-        return Array.isArray(data) ? data : []
-    } catch {
-        return []
-    }
-}
 function average(values) {
     if (values.length === 0) return '—'
     return (values.reduce((total, value) => total + value, 0) / values.length).toFixed(1)
@@ -24,10 +14,31 @@ function formatDate(dateString) {
 
 export function Stats() {
     const [rounds, setRounds] = useState([])
+    const [message, setMessage] = useState('')
 
     useEffect(() => {
-        //load rounds when the Stats page opens.
-        setRounds(loadRounds())
+        async function loadRounds() {
+            try {
+                const response = await fetch('/api/rounds')
+
+                if (response.status === 401) {
+                    setMessage('Please log in to view your statistics.')
+                    return
+                }
+
+                if (!response.ok) {
+                    throw new Error('Failed to load rounds')
+                }
+
+                const savedRounds = await response.json()
+                setRounds(savedRounds)
+                setMessage('')
+            } catch {
+                setMessage('Unable to load your golf rounds.')
+            }
+        }
+
+        loadRounds()
     }, [])
 
     const sortedRounds = [...rounds].sort((a, b) =>
@@ -45,6 +56,7 @@ export function Stats() {
     return (
         <section id="stats">
             <h2>My Stats</h2>
+            {message && <p role="status">{message}</p>}
 
             <div className="stats-cards">
                 <div className="stat-card">
@@ -65,7 +77,7 @@ export function Stats() {
                 </div>
             </div>
 
-            <p>These stats are calculated from the golf rounds you've saved in this browser.</p>
+            <p>These stats are calculated from your saved golf rounds</p>
             <div className="stats-chart-container">
                 <div className="stats-chart">
                     <h3>Recent Rounds</h3>
@@ -90,7 +102,7 @@ export function Stats() {
 
             <hr />
             <h2>Saved Rounds</h2>
-            <p>Your saved rounds are stored locally until the backend is built</p>
+            <p>Your golf rounds are saved to your Roundly account</p>
             <table className="table table-striped table-hover">
                 <thead>
                     <tr>

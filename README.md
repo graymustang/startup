@@ -119,13 +119,13 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [X] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
-- [ ] **Uses BCrypt to hash passwords** - I did not complete this part of the deliverable.
+- [X] **Node.js/Express HTTP service** - Created a backend service using Node.js and Express. The backend handles authentication and saving rounds.
+- [X] **Static middleware for frontend** - Added express.static('public') to serve the React frontend through express.
+- [X] **Calls to third party endpoints** - Added live weather information thorugh Open-Meteo at the bottom of the home page.
+- [X] **Backend service endpoints** - Created API endpoints for registering users, logging in and out, and saving and getting rounds.
+- [X] **Frontend calls service endpoints** - Updated front end pages to use fetch() to communicate with the backend.
+- [X] **Supports registration, login, logout, and restricted endpoint** - I added account creation, login and logout using authentication cookies. api/rounds requires authentication tokens, and you have to be logged in.
+- [X] **Uses BCrypt to hash passwords** - When users register, their passwords are hashed instead of just storing plain text passwords.
 
 ## 🚀 DB deliverable
 

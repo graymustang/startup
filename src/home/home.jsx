@@ -1,17 +1,6 @@
 import { useEffect, useState } from 'react'
 import golfBall from '../img/golf-ball-tee.jpg'
 
-const STORAGE_KEY = 'roundlyRounds'
-
-function loadRounds() {
-    try {
-        const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
-        return Array.isArray(data) ? data : []
-    } catch {
-        return []
-    }
-}
-
 function average(values) {
     if (values.length === 0) return '—'
     return (values.reduce((total, value) => total + value, 0)/values.length).toFixed(1)
@@ -19,19 +8,35 @@ function average(values) {
 
 export function Home() {
     const [rounds, setRounds] = useState([]);
+    const [weather, setWeater] = useState(null)
+    const [weatherError, setWeatherError] = useState('')
 
+    
     useEffect(() => {
-        function refreshRounds() {setRounds(loadRounds())}
+        async function loadRounds() {
+            try {
+                const response = await fetch('/api/rounds')
 
-        refreshRounds()
-        //also refresh if saved rounds change in another tab
-        window.addEventListener('storage', refreshRounds)
-        window.addEventListener('focus', refreshRounds)
-        return () => {
-            window.removeEventListener('storage', refreshRounds)
-            window.removeEventListener('focus', refreshRounds)
+                if (response.status === 401) {
+                    setRounds([])
+                    return
+                }
+
+                if (!response.ok) {
+                    throw new Error('Failed to load rounds')
+                }
+
+                const savedRounds = await response.json()
+                setRounds(savedRounds)
+            } catch (error) {
+                console.error('Unable to load rounds:', error)
+                setRounds([])
+            }
         }
+
+        loadRounds()
     }, [])
+
 
     const scores = rounds.map((round) => Number(round.score)).filter((value) => Number.isFinite(value) && value > 0)
     const fairways = rounds.map((round) => round.fairways).filter((value) => value !== null && value !== '' && value !== undefined).map(Number).filter(Number.isFinite)

@@ -22,7 +22,7 @@ export function Stats() {
                 const response = await fetch('/api/rounds')
 
                 if (response.status === 401) {
-                    setMessage('Please log in to view your statistics.')
+                    setMessage('Please log in to view your statistics')
                     return
                 }
 
@@ -34,7 +34,7 @@ export function Stats() {
                 setRounds(savedRounds)
                 setMessage('')
             } catch {
-                setMessage('Unable to load your golf rounds.')
+                setMessage('Unable to load your golf rounds')
             }
         }
 

@@ -93,17 +93,27 @@ apiRouter.get('/rounds', verifyAuth, (req, res) => {
 
 // Save new golf round
 apiRouter.post('/rounds', verifyAuth, (req, res) => {
-  const { course, score, date } = req.body 
+  const { course, score, date, fairways, putts } = req.body
 
-  if ( typeof course !== 'string' || !course.trim() || !Number.isFinite(score) || typeof date !== 'string' || !date.trim()) {
-    return res.status(400).send({ msg: 'Invalid round data' }) 
+  if (typeof course !== 'string' || !course.trim() || !Number.isInteger(score) || score <= 0 || typeof date !== 'string' ||!date.trim() || (fairways != null && (!Number.isInteger(fairways) || fairways < 0 || fairways > 100)) || (putts != null && (!Number.isInteger(putts) || putts < 0))
+  ) {
+    return res.status(400).send({ msg: 'Invalid round data' })
   }
 
-  const newRound = { id: uuidv4(), userEmail: req.user.email, course, score, date,} 
+  const newRound = {
+    id: uuidv4(),
+    userEmail: req.user.email,
+    date,
+    course: course.trim(),
+    score,
+    fairways: fairways ?? null,
+    putts: putts ?? null,
+  }
 
-  rounds.push(newRound) 
-  res.status(201).send(newRound) 
-}) 
+  rounds.push(newRound)
+  res.status(201).send(newRound)
+})
+ 
 
 app.listen(port, () => {
   console.log(`Roundly service listening on port ${port}`) 

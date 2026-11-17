@@ -9,6 +9,9 @@ dist/
 .env.local
 .env.*.local
 
+# MongoDB credentials
+service/dbConfig.json
+
 # Mac files
 .DS_Store
 

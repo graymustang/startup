@@ -131,9 +131,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+- [x] I completed the prerequisites for this deliverable (Simon DB deployment, GitHub link on the home page, production deployment, and sufficient Git commits).
+- [x] **Stores data in MongoDB** - Rounds get stored in the rounds folder and users in the users. Stats are exclusive to each user.
+- [x] **Stores credentials in MongoDB** - The users collection stores normalized email addresses, bcrypt password hashes, and login tokens.
+- [x] **Database configuration** - The service reads credentials from dbConfig.json or the `DB_CONNECTION_STRING` and `DB_NAME` environment variables. The config file is ignore by git.
+- [x] **Production database setup** - Users can create an account on the production hosted website and store and view their rounds.
 
 ## 🚀 WebSocket deliverable
 

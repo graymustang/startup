@@ -1,154 +1,203 @@
+const express = require("express");
+const cookieParser = require("cookie-parser");
+const bcrypt = require("bcryptjs");
+const { v4: uuidv4 } = require("uuid");
+const { MongoClient } = require("mongodb")
+const fs = require("node:fs");
+const path = require("node:path")
 
-const express = require('express') 
-const cookieParser = require('cookie-parser') 
-const bcrypt = require('bcryptjs') 
-const { v4: uuidv4 } = require('uuid') 
+const app = express();
+const port = process.argv.length > 2 ? process.argv[2] : 4000
+const authCookieName = "token"
 
-const app = express() 
-const port = process.argv.length > 2 ? process.argv[2] : 4000 
+app.use(express.json())
+app.use(cookieParser())
+app.use(express.static("public"))
 
-//middleware
-app.use(express.json()) 
-app.use(cookieParser()) 
-app.use(express.static('public'))
+const apiRouter = express.Router()
+app.use("/api", apiRouter)
 
-//temporary storage
-let users = [] 
-let rounds = [] 
+let users
+let rounds
 
-//API router
-const apiRouter = express.Router() 
-app.use('/api', apiRouter) 
+apiRouter.get("/test", (_req, res) => {
+  res.send({ msg: "Roundly service is running" })
+});
 
-apiRouter.get('/test', (_req, res) => {
-  res.send({ msg: 'Roundly service is running' }) 
-}) 
+//create new account, hash password
+apiRouter.post("/auth/create", async (req, res) => {
+  const { email, password } = req.body;
 
-//Create a new user
-apiRouter.post('/auth/create', async (req, res) => {
-  const { email, password } = req.body 
-
-  if (!email || typeof password !== 'string' || !password) {
-    return res.status(400).send({ msg: 'Email and password required' }) 
+  if (typeof email !== "string" ||!email.trim() || typeof password !== "string" || !password) {
+    return res.status(400).send({ msg: "Email and password required" })
   }
 
-  if (await findUser('email', email)) {
-    return res.status(409).send({ msg: 'Existing user' }) 
+  const normalizedEmail = email.trim().toLowerCase();
+  const passwordHash = await bcrypt.hash(password, 10);
+  const token = uuidv4();
+
+  try {
+    const result = await users.insertOne({email: normalizedEmail, passwordHash, token, createdAt: new Date()});
+
+    setAuthCookie(res, token);
+    res.send({ email: normalizedEmail, id: result.insertedId.toString() })
+  } catch (error) {
+    if (error.code === 11000) {
+      return res.status(409).send({ msg: "Existing user" })
+    }
+    throw error
+  }
+});
+
+//log in an existing account and persist the new token
+apiRouter.post("/auth/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  if (typeof email !== "string" || typeof password !== "string") {
+    return res.status(400).send({ msg: "Email and password required" });
   }
 
-  const user = await createUser(email, password) 
+  const user = await users.findOne({ email: email.trim().toLowerCase() });
 
-  setAuthCookie(res, user.token) 
-  res.send({ email: user.email }) 
-}) 
-
-//login an existing user
-apiRouter.post('/auth/login', async (req, res) => {
-  const { email, password } = req.body 
-
-  if (typeof email !== 'string' || typeof password !== 'string') {
-    return res.status(400).send({ msg: 'Email and password required' }) 
+  if (user && (await bcrypt.compare(password, user.passwordHash))) {
+    const token = uuidv4();
+    await users.updateOne({ _id: user._id }, { $set: { token } });
+    setAuthCookie(res, token);
+    return res.send({ email: user.email, id: user._id.toString() });
   }
 
-  const user = await findUser('email', email) 
+  res.status(401).send({ msg: "Unauthorized" });
+});
 
-  if (user && await bcrypt.compare(password, user.password)) {
-    user.token = uuidv4() 
-    setAuthCookie(res, user.token) 
-    return res.send({ email: user.email }) 
+//remove login token when log out
+apiRouter.delete("/auth/logout", async (req, res) => {
+  const token = req.cookies[authCookieName]
+  if (token) {
+    await users.updateOne({ token }, { $unset: { token: "" } })
   }
 
-  res.status(401).send({ msg: 'Unauthorized' }) 
-}) 
+  res.clearCookie(authCookieName, {
+    sameSite: "strict",
+    secure: process.env.NODE_ENV === "production",
+  });
+  res.status(204).end();
+});
 
-//logout the current user
-apiRouter.delete('/auth/logout', async (req, res) => {
-  const user = await findUser('token', req.cookies[authCookieName]) 
-
-  if (user) {
-    delete user.token 
-  }
-
-  res.clearCookie(authCookieName) 
-  res.status(204).end() 
-}) 
-
-// Verify that a user is logged in
 const verifyAuth = async (req, res, next) => {
-  const user = await findUser('token', req.cookies[authCookieName]) 
+  const token = req.cookies[authCookieName]
+  const user = token ? await users.findOne({ token }) : null
 
-  if (user) {
-    req.user = user 
-    next() 
-  } else {
-    res.status(401).send({ msg: 'Unauthorized' }) 
+  if (!user) {
+    return res.status(401).send({ msg: "Unauthorized" })
   }
-} 
 
-//get all rounds
-apiRouter.get('/rounds', verifyAuth, (req, res) => {
-  const userRounds = rounds.filter((round) => round.userEmail === req.user.email) 
+  req.user = user
+  next()
+};
 
-  res.send(userRounds) 
-}) 
+//return only this users rounds
+apiRouter.get("/rounds", verifyAuth, async (req, res) => {
+  const userRounds = await rounds.find({ userId: req.user._id.toString() }, { projection: { _id: 0 } }).sort({ date: -1 }).toArray()
 
-// Save new golf round
-apiRouter.post('/rounds', verifyAuth, (req, res) => {
+  res.send(userRounds);
+});
+
+//save round in mongodb for current user
+apiRouter.post("/rounds", verifyAuth, async (req, res) => {
   const { course, score, date, fairways, putts } = req.body
 
-  if (typeof course !== 'string' || !course.trim() || !Number.isInteger(score) || score <= 0 || typeof date !== 'string' ||!date.trim() || (fairways != null && (!Number.isInteger(fairways) || fairways < 0 || fairways > 100)) || (putts != null && (!Number.isInteger(putts) || putts < 0))
+  if (
+    typeof course !== "string" ||
+    !course.trim() ||
+    !Number.isInteger(score) ||
+    score <= 0 ||
+    typeof date !== "string" ||
+    !date.trim() ||
+    (fairways != null &&
+      (!Number.isInteger(fairways) || fairways < 0 || fairways > 100)) ||
+    (putts != null && (!Number.isInteger(putts) || putts < 0))
   ) {
-    return res.status(400).send({ msg: 'Invalid round data' })
+    return res.status(400).send({ msg: "Invalid round data" })
   }
 
   const newRound = {
     id: uuidv4(),
+    userId: req.user._id.toString(),
     userEmail: req.user.email,
-    date,
+    date: date.trim(),
     course: course.trim(),
     score,
     fairways: fairways ?? null,
     putts: putts ?? null,
-  }
+    createdAt: new Date(),
+  };
 
-  rounds.push(newRound)
+  await rounds.insertOne(newRound)
   res.status(201).send(newRound)
-})
+});
 
 app.use((req, res) => {
-    if (req.path.startsWith('/api/')) {
-        return res.status(404).send({ msg: 'API endpoint not found' })
-    }
+  if (req.path.startsWith("/api/")) {
+    return res.status(404).send({ msg: "API endpoint not found" })
+  }
 
-    res.sendFile('index.html', { root: 'public' })
+  res.sendFile("index.html", { root: "public" })
 });
- 
 
-app.listen(port, () => {
-  console.log(`Roundly service listening on port ${port}`) 
-}) 
+app.use((error, _req, res, _next) => {
+  console.error("Request failed:", error)
+  res.status(500).send({ msg: "Server error" })
+});
 
-const authCookieName = 'token' 
+function loadDatabaseConfig() {
+  const configPath = path.join(__dirname, "dbConfig.json")
+  let fileConfig = {}
 
-async function createUser(email, password) {
-  const passwordHash = await bcrypt.hash(password, 10) 
+  if (fs.existsSync(configPath)) {
+    fileConfig = JSON.parse(fs.readFileSync(configPath, "utf8"))
+  }
 
-  const user = { email: email, password: passwordHash, token: uuidv4(), } 
+  const connectionString =
+    process.env.DB_CONNECTION_STRING || fileConfig.connectionString
+  const dbName = process.env.DB_NAME || fileConfig.dbName
 
-  users.push(user) 
-  return user 
+  if (!connectionString || !dbName) {
+    throw new Error(
+      "Set connectionString and dbName in service/dbConfig.json or DB_CONNECTION_STRING and DB_NAME environment variables.",
+    );
+  }
+
+  return { connectionString, dbName }
 }
 
-async function findUser(field, value) {
-  if (!value) return null 
+async function start() {
+  const { connectionString, dbName } = loadDatabaseConfig()
+  const mongoClient = new MongoClient(connectionString)
+  await mongoClient.connect()
 
-  return users.find((user) => user[field] === value) 
+  const database = mongoClient.db(dbName)
+  users = database.collection("users")
+  rounds = database.collection("rounds")
+  await users.createIndex({ email: 1 }, { unique: true })
+  await users.createIndex({ token: 1 }, { sparse: true })
+  await rounds.createIndex({ userId: 1, date: -1 })
+
+  app.listen(port, () => {
+    console.log(
+      `Roundly service listening on port ${port}; connected to MongoDB database ${dbName}`,
+    );
+  });
 }
 
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, {
-    secure: process.env.NODE_ENV === 'production',
+    secure: process.env.NODE_ENV === "production",
     httpOnly: true,
-    sameSite: 'strict',
-  }) 
+    sameSite: "strict",
+  });
 }
+
+start().catch((error) => {
+  console.error("Unable to start Roundly service:", error.message)
+  process.exit(1);
+});

@@ -17,6 +17,7 @@ app.use(express.static("public"))
 const apiRouter = express.Router()
 app.use("/api", apiRouter)
 
+//not using temporary storage anymore
 let users
 let rounds
 

@@ -43,3 +43,7 @@ Mocking out functionality was kind of new, but I have done that before for other
 ## Startup Service
 
 It's really cool to be able to wire up a backend and test it through the command line. It took a while to learn since I'm used to being able to use a UI, but testing before I have everything connected to the React components is necessary.
+
+## Startup DB
+
+I liked learning how to set up a database so that I could have persistent storage. The user accounts and rounds are stored in MongoDB. It connects before starting the http server and then creates indexes for unique account emails and login tokens. The dbConfig.json is ignored by git since it has secrets that shouldn't be exposed.

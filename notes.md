@@ -46,4 +46,4 @@ It's really cool to be able to wire up a backend and test it through the command
 
 ## Startup DB
 
-I liked learning how to set up a database so that I could have persistent storage. The user accounts and rounds are stored in MongoDB. It connects before starting the http server and then creates indexes for unique account emails and login tokens. The dbConfig.json is ignored by git since it has secrets that shouldn't be exposed. I ran into some authentication issues with the database, but it turns out that I didn't set up my config file properly.
+I liked learning how to set up a database so that I could have persistent storage. The user accounts and rounds are stored in MongoDB. It connects before starting the http server and then creates indexes for unique account emails and login tokens. The dbConfig.json is ignored by git since it has secrets that shouldn't be exposed. I ran into some authentication issues with the database, but it turns out that I didn't set up my config file properly. I also ran into some issues with AWS not being able to connect to my database, but I just added the IP address in MongoDB and it was able to connect.
